@@ -13,6 +13,7 @@ java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
 	mavenCentral()
+	jcenter()
 }
 
 dependencies {
@@ -21,6 +22,16 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
+
+	implementation("com.graphql-java-kickstart:graphql-spring-boot-starter:8.0.0")
+
+	runtimeOnly("com.graphql-java-kickstart:altair-spring-boot-starter:8.0.0")
+	runtimeOnly("com.graphql-java-kickstart:graphiql-spring-boot-starter:8.0.0")
+	runtimeOnly("com.graphql-java-kickstart:voyager-spring-boot-starter:8.0.0")
+	runtimeOnly("com.graphql-java-kickstart:playground-spring-boot-starter:8.0.0")
+
+	// testing facilities
+	testImplementation("com.graphql-java-kickstart:graphql-spring-boot-starter-test:8.0.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
