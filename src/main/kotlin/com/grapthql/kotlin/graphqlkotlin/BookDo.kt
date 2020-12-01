@@ -12,4 +12,7 @@ class BookDo(
     var id: Int? = null,
     @Column
     var name: String,
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book", cascade = [CascadeType.ALL])
+    var pages: List<PageDo>? = null,
 )
