@@ -2,15 +2,26 @@ package com.grapthql.kotlin.graphqlkotlin
 
 import graphql.kickstart.tools.GraphQLQueryResolver
 import org.springframework.stereotype.Component
+import org.springframework.transaction.annotation.Transactional
 
-data class Book(val id: String, val name: String)
+data class Book(val id: Int?, val name: String) {
+    companion object  {
+        fun of(bookDo: BookDo): Book = Book(bookDo.id, bookDo.name)
+    }
+}
 
 @Component
-class BookResolver : GraphQLQueryResolver {
+@Transactional
+class BookResolver(
+    private val bookRepository: BookRepository,
+) : GraphQLQueryResolver {
     // this method name needs to be same and in the schema
-    fun books(): List<Book> {
-        val book1 = Book("1", "name1")
-        val book2 = Book("2", "name2")
-        return listOf(book1, book2)
+    fun books(id: Int?): List<Book> {
+        var resultBooks = bookRepository.findAll()
+        if (id != null) {
+           resultBooks = resultBooks.filter { it.id == id }
+        }
+
+        return resultBooks.map(Book::of)
     }
 }
