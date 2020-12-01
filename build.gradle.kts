@@ -4,6 +4,7 @@ plugins {
 	id("org.springframework.boot") version "2.4.0"
 	id("io.spring.dependency-management") version "1.0.10.RELEASE"
 	kotlin("jvm") version "1.4.10"
+	kotlin("plugin.jpa") version "1.4.10"
 	kotlin("plugin.spring") version "1.4.10"
 }
 
@@ -24,6 +25,9 @@ dependencies {
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 
 	implementation("com.graphql-java-kickstart:graphql-spring-boot-starter:8.0.0")
+
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("com.h2database:h2:1.4.200")
 
 	runtimeOnly("com.graphql-java-kickstart:altair-spring-boot-starter:8.0.0")
 	runtimeOnly("com.graphql-java-kickstart:graphiql-spring-boot-starter:8.0.0")
